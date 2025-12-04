@@ -1,6 +1,7 @@
 ---
 layout: default
 ---
+## On this site I will put things related to **IT** and what I develop. ##
 
 Text can be **bold**, _italic_, ~~strikethrough~~ or `keyword`.
 
