@@ -15,6 +15,21 @@ Compression finished:
 
 ![Compression finished](./assets/images/ArchiveManager_2025-12-05_11-58-35.png)
 
+
+* * *
+
+```
+This is the END :-)
+```
+
+
+
+
+
+
+
+
+
 Text can be **bold**, _italic_, ~~strikethrough~~ or `keyword`.
 
 [Link to another page](./another-page.html).
