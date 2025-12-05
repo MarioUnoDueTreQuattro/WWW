@@ -5,7 +5,7 @@ layout: default
 
 ### **2025-12-05** ###
 
-I'm currently developing a compressed archive manager that uses the bit7z library.
+I'm currently developing a C++/Qt5 compressed archive manager that uses the bit7z library.
 
 Compressing:
 
