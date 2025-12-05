@@ -15,12 +15,6 @@ Compression finished:
 
 ![Compression finished](./assets/images/ArchiveManager_2025-12-05_11-58-35.png)
 
-
-* * *
-
-```
-This is the END :-)
-```
 ```c++
 class CompressionProgressFunctor
 {
@@ -169,7 +163,11 @@ private:
 };
 ```
 
+* * *
 
+```
+This is the END :-)
+```
 
 
 
