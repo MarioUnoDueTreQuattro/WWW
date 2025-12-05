@@ -5,10 +5,12 @@ layout: default
 
 I'm currently developing a compressed archive manager that uses the bit7z library.
 
-Compressing
+Compressing:
+
 ![Compressing](./assets/images/2025-12-05_12-03-31.png)
 
-Compression finished
+Compression finished:
+
 ![Compression finished](./assets/images/ArchiveManager_2025-12-05_11-58-35.png)
 
 Text can be **bold**, _italic_, ~~strikethrough~~ or `keyword`.
