@@ -3,6 +3,12 @@ layout: default
 ---
 ## On this site I will put things related to **IT** and what I develop. ##
 
+I'm currently developing a compressed archive manager that uses the bit7z library.
+
+![Compressing](./assets/images/2025-12-05_12-03-31.png)
+
+![Compression finished](./assets/ArchiveManager_2025-12-05_11-58-35.png)
+
 Text can be **bold**, _italic_, ~~strikethrough~~ or `keyword`.
 
 [Link to another page](./another-page.html).
