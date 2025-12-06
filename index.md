@@ -15,6 +15,12 @@ Compression finished:
 
 ![Compression finished](./assets/images/ArchiveManager_2025-12-05_11-58-35.png)
 
+### **2025-12-06** ###
+
+GUI changes:
+
+![GUI changes](./assets/images/ArchiveManager_2025-12-06_15-03-52.png)
+
 ```c++
 class CompressionProgressFunctor
 {
