@@ -25,7 +25,7 @@ GUI changes:
 
 Main window, under construction:
 
-![GUI changes](./assets/images/ArchiveManager_2025-12-08_07-57-05.png)
+<img src="./assets/images/ArchiveManager_2025-12-08_07-57-05.png" alt="Main window, under construction" style="max-width: none;">
 
 
 ```c++
