@@ -21,6 +21,13 @@ GUI changes:
 
 ![GUI changes](./assets/images/ArchiveManager_2025-12-06_15-03-52.png)
 
+### **2025-12-08** ###
+
+Main window, under construction:
+
+![GUI changes](./assets/images/ArchiveManager_2025-12-08_07-57-05.png)
+
+
 ```c++
 class CompressionProgressFunctor
 {
