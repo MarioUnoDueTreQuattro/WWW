@@ -3,6 +3,8 @@ layout: default
 ---
 ## On this site I will put things related to **IT** and what I develop. ##
 
+<br>
+
 ### **2025-12-05** ###
 
 I'm currently developing a C++/Qt5 compressed archive manager that uses the bit7z library.
@@ -15,11 +17,15 @@ Compression finished:
 
 ![Compression finished](./assets/images/ArchiveManager_2025-12-05_11-58-35.png)
 
+<br>
+
 ### **2025-12-06** ###
 
 GUI changes:
 
 ![GUI changes](./assets/images/ArchiveManager_2025-12-06_15-03-52.png)
+
+<br>
 
 ### **2025-12-08** ###
 
@@ -27,7 +33,25 @@ Main window, under construction:
 
 <img src="./assets/images/ArchiveManager_2025-12-08_07-57-05.png" alt="Main window, under construction" style="max-width: none;">
 
+<br>
+
+### **2025-12-17** ###
+
+Main window, still under construction:
+
+<img src="./assets/images/ArchiveManager_2025-12-17_12-47-11.png" alt="Main window, under construction" style="max-width: none;">
+
+Compression options:
+
+![Compression options](./assets/images/ArchiveManager_2025-12-17_12-49-32.png)
+
+Compression running:
+
+![Compression running](./assets/images/ArchiveManager_2025-12-17_12-50-17.png)
+
+
 * * *
+<br>
 
 ```c++
 class CompressionProgressFunctor
