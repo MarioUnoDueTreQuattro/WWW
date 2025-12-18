@@ -49,9 +49,126 @@ Compression running:
 
 ![Compression running](./assets/images/ArchiveManager_2025-12-17_12-50-17.png)
 
+<br>
+
+### **2025-12-18** ###
+
+Polished:
+
+![Compression running](./assets/images/ArchiveManager_2025-12-18_18-49-33.png)
+
+  Buttons are subclassed from QPushButton.
+
+  ```c++
+    /**
+     * @brief Custom paint event to draw the button elements.
+     * @param event The paint event data.
+     *
+     * This implementation:
+     * 1. Draws the native button bevel/background.
+     * 2. Calculates the OS-specific "Shift" (e.g., 1px down/right when pressed).
+     * 3. Draws the icon fixed to the left (shifted if pressed).
+     * 4. Draws the text centered (shifted if pressed).
+     * 5. Performs collision detection: if the button is shrunk manually and text
+     *    overlaps the icon, the text is pushed to the right.
+     */
+```
+
+ProgressBar is a QProgressBar subclass without chunks, solid fill.
+
+```c++
+#ifndef SOLIDPROGRESSBAR_H
+#define SOLIDPROGRESSBAR_H
+
+#include <QProgressBar>
+
+class SolidProgressBar : public QProgressBar
+{
+    Q_OBJECT
+public:
+    explicit SolidProgressBar(QWidget *parent = nullptr);
+    QSize sizeHint() const override;
+    QSize minimumSizeHint() const override;
+protected:
+    void paintEvent(QPaintEvent *event) override;
+};
+#endif // SOLIDPROGRESSBAR_H
+```
+
+"Show" checkbox select file in any file manager:
+
+```c++
+void Helper::openFolderAndSelectFileEx(const QString &filePath)
+{
+    QFileInfo fi(filePath);
+    if (!fi.exists())
+    {
+        qDebug() << "File does not exist:" << filePath;
+        return;
+    }
+    // Step 1: Resolve file symlink if it exists
+    QString targetFilePath = fi.absoluteFilePath();
+    if (fi.isSymLink())
+    {
+        QString realFile = fi.symLinkTarget();
+        if (!realFile.isEmpty())
+        {
+            targetFilePath = realFile;
+        }
+        else
+        {
+            qDebug() << "File is a broken symlink:" << filePath;
+            targetFilePath = fi.absoluteFilePath(); // fallback: select the symlink itself
+        }
+    }
+    // Step 2: Resolve folder symlink if it exists
+    QFileInfo folderInfo(QFileInfo(targetFilePath).absolutePath());
+    QString folderPath = folderInfo.absoluteFilePath();
+    if (folderInfo.isSymLink())
+    {
+        QString realFolder = folderInfo.symLinkTarget();
+        if (!realFolder.isEmpty())
+        {
+            folderPath = realFolder;
+        }
+        else
+        {
+            qDebug() << "Folder is a broken symlink:" << folderInfo.absoluteFilePath();
+            folderPath = folderInfo.absoluteFilePath(); // fallback: open the symlink folder
+        }
+    }
+    // Step 3: Combine resolved folder path and file name
+    QString nativePath = QDir::toNativeSeparators(folderPath + "\\" + QFileInfo(targetFilePath).fileName());
+    LPCWSTR path = reinterpret_cast<LPCWSTR>(nativePath.utf16());
+    // Step 4: Try using the Windows Shell API to select the file
+    PIDLIST_ABSOLUTE pidl = nullptr;
+    HRESULT hr = SHParseDisplayName(path, nullptr, &pidl, 0, nullptr);
+    if (SUCCEEDED(hr) && pidl != nullptr)
+    {
+        hr = SHOpenFolderAndSelectItems(pidl, 0, nullptr, 0);
+        if (FAILED(hr))
+        {
+            qDebug() << "Shell API failed, falling back to opening folder:" << nativePath;
+            QProcess::startDetached("explorer.exe", QStringList() << QDir::toNativeSeparators(folderPath));
+        }
+        CoTaskMemFree(pidl);
+    }
+    else
+    {
+        // Step 5: Shell API failed (e.g., path contains special characters), fallback
+        qDebug() << "Failed to parse path with Shell API, opening folder:" << nativePath;
+        QProcess::startDetached("explorer.exe", QStringList() << QDir::toNativeSeparators(folderPath));
+    }
+}
+```
+
+
+
 
 * * *
 <br>
+
+Code of CompressionProgressFunctor:
 
 ```c++
 class CompressionProgressFunctor
@@ -206,129 +323,13 @@ private:
 ```
 This is the END :-)
 ```
-
-
-
-
-
-
-
-Text can be **bold**, _italic_, ~~strikethrough~~ or `keyword`.
-
-[Link to another page](./another-page.html).
-
-There should be whitespace between paragraphs.
-
-There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.
-
-# Header 1
-
-This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
-
-## Header 2
-
-> This is a blockquote following a header.
->
-> When something is important enough, you do it even if the odds are not in your favor.
-
-### Header 3
-
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
-
-```ruby
-# Ruby code with syntax highlighting
-GitHubPages::Dependencies.gems.each do |gem, version|
-  s.add_dependency(gem, "= #{version}")
-end
-```
-
-#### Header 4
-
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
-
-##### Header 5
-
-1.  This is an ordered list following a header.
-2.  This is an ordered list following a header.
-3.  This is an ordered list following a header.
-
-###### Header 6
-
-| head1        | head two          | three |
-|:-------------|:------------------|:------|
-| ok           | good swedish fish | nice  |
-| out of stock | good and plenty   | nice  |
-| ok           | good `oreos`      | hmm   |
-| ok           | good `zoute` drop | yumm  |
-
-### There's a horizontal rule below this.
-
-* * *
-
-### Here is an unordered list:
-
-*   Item foo
-*   Item bar
-*   Item baz
-*   Item zip
-
-### And an ordered list:
-
-1.  Item one
-1.  Item two
-1.  Item three
-1.  Item four
-
-### And a nested list:
-
-- level 1 item
-  - level 2 item
-  - level 2 item
-    - level 3 item
-    - level 3 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-
-### Small image
-
-![Octocat](https://github.githubassets.com/images/icons/emoji/octocat.png)
-
-### Large image
-
-![Branching](https://guides.github.com/activities/hello-world/branching.png)
-
-
-### Definition lists can be used with HTML syntax.
-
 <dl>
 <dt>Name</dt>
-<dd>Godzilla</dd>
+<dd>Andrea</dd>
 <dt>Born</dt>
-<dd>1952</dd>
+<dd>1973</dd>
 <dt>Birthplace</dt>
-<dd>Japan</dd>
+<dd>Italy</dd>
 <dt>Color</dt>
-<dd>Green</dd>
+<dd>Blue</dd>
 </dl>
-
-```
-Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
-```
-
-```
-The final element.
-```
