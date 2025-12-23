@@ -170,6 +170,11 @@ Added "Encrypted" column, header show tooltip if text is elided:
 
 ![encrypted](./assets/images/Encrypted.png)
 
+Save/Restore colmuns width and visibility with context menu on header:
+
+![headerContextMenu](./assets/images/HeaderContextMenu.png)
+
+
 
 * * *
 <br>
