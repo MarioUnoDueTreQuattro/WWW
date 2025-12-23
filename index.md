@@ -166,7 +166,7 @@ void Helper::openFolderAndSelectFileEx(const QString &filePath)
 
 ### **2025-12-18** ###
 
-Added "Encryped" column, header show tooltip if text is elided:
+Added "Encrypted" column, header show tooltip if text is elided:
 
 ![encrypted](./assets/images/Encrypted.png)
 
