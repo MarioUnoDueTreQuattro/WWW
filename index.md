@@ -164,7 +164,7 @@ void Helper::openFolderAndSelectFileEx(const QString &filePath)
 
 <br>
 
-### **2025-12-18** ###
+### **2025-12-23** ###
 
 Added "Encrypted" column, header show tooltip if text is elided:
 
@@ -174,6 +174,13 @@ Save/Restore colmuns width and visibility with context menu on header:
 
 ![headerContextMenu](./assets/images/HeaderContextMenu.png)
 
+<br>
+
+### **2025-12-24** ###
+
+PacMan on progress bar similar to WinDirStat:
+
+![PacMan](./assets/images/ArchiveManager_2025-12-24_19-52-08.gif)
 
 
 * * *
