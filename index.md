@@ -182,6 +182,10 @@ PacMan on progress bar similar to WinDirStat:
 
 ![PacMan](./assets/images/ArchiveManager_2025-12-24_19-52-08.gif)
 
+Added "zzz" to PacMan when operation is paused or finished:
+
+![PacMan_zzz](./assets/images/PacMan_zzz.png)
+
 
 * * *
 <br>
